@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>LHanouta | Index page</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/semantic.min.css" />
+	<link rel="stylesheet" href="/js/semantic.min.js" />
+	
+</head>
+<body>
+	<div th:replace="header::menu(1)" ></div>
+	<div th:replace="header::breadcrumbs" ></div>
+		
+	<section class="cart-table">
+		<div class="container">
+			<div class="row">
+				<div class="titre-cart"><h3>Cart</h3></div>
+				<table class="produit-table table table-bordered">
+					<tr>
+						<td></td>
+						<td><b>Photo</b></td>
+						<td><b>Produit</b></td>
+						<td><b>Prix</b></td>
+						<td><b>Quantité</b></td>
+						<td><b>Total</b></td>
+					</tr>
+					<tr class="table-produit-body">
+						<td class="delete-produit"> <i class="fa fa-close"></i> </td>
+						<td class="td-produit-img"><img src="/img/product/product3.jpg" /></td>
+						<td>Produit 3</td>
+						<td>2486571 $</td>
+						<td>
+							<div class="qte-form">
+								<div class="">
+									<span class="minus"><i class="fa fa-minus"></i></span>
+									<input type="text" class="qte-input" name="qte" placeholder="1" />
+									<span class="plus"><i class="fa fa-plus"></i></span>
+								</div>
+							</div>
+						</td>
+						<td>2486571 $</td>
+					</tr>
+					<tr class="table-produit-body">
+						<td class="delete-produit"> <i class="fa fa-close"></i> </td>
+						<td class="td-produit-img"><img src="/img/product/product4.jpg" /></td>
+						<td>Produit 4</td>
+						<td>5461312 $</td>
+						<td>
+							<div class="qte-form">
+								<div class="">
+									<span class="minus"><i class="fa fa-minus"></i></span>
+									<input type="text" class="qte-input" name="qte" placeholder="1" />
+									<span class="plus"><i class="fa fa-plus"></i></span>
+								</div>
+							</div>
+						</td>
+						<td>5461312 $</td>
+					</tr>
+					<tr>
+						<td colspan="6" style="text-align:right !important"> <a href="#" class="btn btn-danger" style="border-left:0">Update Carte</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-6">
+					<div class="cart-checkout-total"> <h3>Cart Total</h3> </div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6 cart-checkout">
+						<div class="cart-checkout-total"> <h3>Cart Total</h3> </div>
+						<table class="table table-bordered">
+							<tr>
+								<td><b>Subtotal</b></td>
+								<td style="text-align:right !important">7947883 $</td>
+							</tr>
+							<tr>
+								<td><b>Taux</b></td>
+								<td style="text-align:right !important">0 %</td>
+							</tr>
+							<tr>
+								<td><b>Total</b></td>
+								<td style="text-align:right !important">7947883 $</td>
+							</tr>
+						</table>
+						<a href="#" class="btn btn-danger btn-block">Checkout</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<div th:replace="footer::footer()" ></div>
+
+
+</body>
+</html>

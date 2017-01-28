@@ -1,0 +1,34 @@
+<!-- <html xmlns:th="http://www.thymeleaf.org"> -->
+	<section id="header" class="header" th:fragment = "menu(index)">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-3 col-sm-3 col-md-4 logo"><b><span class="logo-first-letter">H</span>&nbsp;anouta</b></div>
+				<div class="col-xs-6 col-sm-6 col-md-6 menu-list">
+					 <ul class="menu-list-item pull-right">
+					 	<li th:class="${index} == 0 ? 'current' : '' " ><a href="/hanouta/acceuil">Acceuil</a></li>
+					 	<li th:class="${index} == 1 ? 'current' : '' "><a href="/hanouta/produit">Boutique</a></li>
+					 	<li th:class="${index} == 2 ? 'current' : '' "><a href="#">Contact</a></li>
+					 </ul>
+				</div>
+				<div class="col-xs-3 col-sm-3 col-md-2 menu-icon">
+					<ul class="menu-icon-item pull-right">
+					 	<li><a href="#" class="search-item"><i class="fa fa-search"></i></a></li>
+					 	<li><a href="/hanouta/cart" class="cart-item"><i class="fa fa-shopping-bag"></i> <span class="cart-size"><b>12</b></span></a></li>
+					 </ul>
+				</div>
+			</div>		
+		</div>
+	</section>
+	<section id="breadcrumbs" th:fragment="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<ul class="breadcrumb">
+					  <li><a href="#">Acceuil</a></li>
+					  <li class="active">Cart</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- </html> -->

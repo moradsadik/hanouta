@@ -1,0 +1,137 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>LHanouta | Index page</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="/css/style.css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/css/semantic.min.css" />
+	<link rel="stylesheet" href="/js/semantic.min.js" />
+	
+</head>
+<body>
+
+	<div th:replace="header :: menu(1)"></div>
+	<div th:replace="header :: breadcrumbs"></div>
+	
+
+	<section class="">
+		<div class="container">
+			<div class="row produit-page">
+				<div class="col-xs-6 col-sm-6 col-md-6 produit-thumbs-slider">
+					<div class="col-xs-3 col-sm-3 col-md-3">
+						<a class="produit-item-img" href="#"> <img src="/img/product/product1.jpg" /></a>
+						<a class="produit-item-img" href="#"> <img src="/img/product/product2.jpg" /></a>
+						<a class="produit-item-img" href="#"> <img src="/img/product/product3.jpg" /></a>
+						<a class="produit-item-img" href="#"> <img src="/img/product/product4.jpg" /></a>
+
+					</div>
+					<div class="col-xs-9 col-sm-9 col-md-9">
+						<a class="produit-item-principal" href="#"> <img src="/img/product/product4.jpg" /></a>
+					</div>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-6 produit-detaille">
+					<div class="titre-item"><h3>Titre Produit</h3></div>
+					<div class="prix-item"><h3>2486571 $</h3></div>
+					<p class="description-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<div class="quantite-item col-xs-12 col-sm-12 col-md-12 pd0" >
+						<div class="col-xs-5 col-sm-5 col-md-5 qte" style="padding-left:0"><h4>Quantité</h4></div>
+						<div class="col-xs-7 col-sm-7 col-md-7 qte-form">
+							<div class="pull-right">
+								<span class="minus"><i class="fa fa-minus"></i></span>
+								<input type="text" class="qte-input" name="qte" placeholder="1" />
+								<span class="plus"><i class="fa fa-plus"></i></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 pd0 add-to-cart">
+						<a href="" class="btn btn-block btn-danger"> <i class="fa fa-shopping-basket"></i> &nbsp;&nbsp;<b>Add To Panier</b></a>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 pd0 tags-categories">
+						<div class="categories">
+						 <span>Categories : </span>
+						  <a href="">Categorie 1</a>
+						  <a href="">, Categorie 2</a>
+						  <a href="">, Categorie 3</a>
+						</div>
+						<div class="tags">
+						 <span>Tags : </span>
+						  <a href="">tag 1</a>
+						  <a href="">, tag 2</a>
+						  <a href="">, tag 3</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>	
+	</section>
+	
+	<section id="content" class="related-produit">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 section-titre" style="padding-bottom:0;margin-bottom:0">
+					<div class="col-xs-4 col-sm-4 col-md-4 titre-item"><h3>Relateds Produits</h3></div>
+				</div>
+				<div class="product-list col-md-12">
+					 <div class=" col-xs-3 col-sm-3 col-md-3">
+					 	 <div class="product-item">
+					 	 	<div class="product-thumb">
+					 	 		<img src="/img/product/product1.jpg" />
+					 	 		<div class="img-hovered">
+					 	 			<a class="zoom" href="#"><i class="fa fa-search-plus"></i></a>
+					 	 			<a class="view" href="#"><i class="fa fa-eye"></i></a>
+					 	 		</div>
+					 	 	</div>
+						 	<div class="product-titre">Produit 1</div>
+						 	<div class="product-prix">203455 $</div>
+					 	 </div>
+					 </div>
+					 <div class=" col-xs-3 col-sm-3 col-md-3">
+					 	 <div class="product-item">
+					 	 	<div class="product-thumb">
+					 	 		<img src="/img/product/product2.jpg" />
+					 	 		<div class="img-hovered">
+					 	 			<a class="zoom" href="#"><i class="fa fa-search-plus"></i></a>
+					 	 			<a class="view" href="#"><i class="fa fa-eye"></i></a>
+					 	 		</div>
+					 	 	</div>
+						 	<div class="product-titre">Produit 2</div>
+						 	<div class="product-prix">203455 $</div>
+					 	 </div>
+					 </div>
+					 <div class=" col-xs-3 col-sm-3 col-md-3">
+					 	 <div class="product-item">
+					 	 	<div class="product-thumb">
+					 	 		<img src="/img/product/product3.jpg" />
+					 	 		<div class="img-hovered">
+					 	 			<a class="zoom" href="#"><i class="fa fa-search-plus"></i></a>
+					 	 			<a class="view" href="#"><i class="fa fa-eye"></i></a>
+					 	 		</div>
+					 	 	</div>
+						 	<div class="product-titre">Produit 3</div>
+						 	<div class="product-prix">203455 $</div>
+					 	 </div>
+					 </div>
+					 <div class=" col-xs-3 col-sm-3 col-md-3">
+					 	 <div class="product-item">
+					 	 	<div class="product-thumb">
+					 	 		<img src="/img/product/product4.jpg" />
+					 	 		<div class="img-hovered">
+					 	 			<a class="zoom" href="#"><i class="fa fa-search-plus"></i></a>
+					 	 			<a class="view" href="#"><i class="fa fa-eye"></i></a>
+					 	 		</div>
+					 	 	</div>
+						 	<div class="product-titre">Produit 4</div>
+						 	<div class="product-prix">203455 $</div>
+					 	 </div>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<div th:replace="footer::footer()"></div>
+
+</body>
+</html>

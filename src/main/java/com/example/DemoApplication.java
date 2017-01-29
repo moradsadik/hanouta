@@ -12,8 +12,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.example.converter.CategorieConverter;
+import com.example.converter.MediaConverter;
 import com.example.converter.ProductConverter;
-import com.example.domain.Product;
+import com.example.converter.TagsConverter;
 import com.example.repository.ProductRepository;
 
 @SpringBootApplication
@@ -31,7 +33,6 @@ public class DemoApplication extends WebMvcConfigurerAdapter {
 	@Bean
 	CommandLineRunner demo(ServletContext ctx){
 		return args->{ 
-			//pr.save(new Product("a", "b", "c", 12.03, "d", "e"));
 			new File(UPLOAD_DIR).mkdirs();
 		};
 	}
@@ -39,6 +40,9 @@ public class DemoApplication extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 			registry.addConverter(new ProductConverter());
+			registry.addConverter(new TagsConverter());
+			registry.addConverter(new CategorieConverter());
+			registry.addConverter(new MediaConverter());
 	}
 	
 	

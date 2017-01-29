@@ -18,10 +18,9 @@ public class Tag{
 	@Getter @Setter  @ManyToOne @JoinColumn(name="product_id") private Product product;
 	
 	public Tag(){}
-	public Tag(String name, Product product) {
+	public Tag(String name) {
 		super();
 		this.name = name;
-		this.product = product;
 	}
 	
 	

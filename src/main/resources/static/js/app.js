@@ -20,26 +20,26 @@ $(document).ready(function(){
 	$('.upload-button').on('click',function(evt){
 		$(this).siblings('.file-container').click();
 	})
-	
-	
-	
-	var preview = $('.media-preview');
-	$('#produit-form').fileupload({
-		url : '/hanouta/media/add/single',
-		add : function(e,data){
-			var send = data.submit();
-		},
-		progress : function(e,data){
-		},
-		done : function(e, data){
-			console.log("done : ",data)
-			var src = data.result.path;
-			preview.append('<div class="card special cards"> <div class="blurring dimmable image"> <div class="ui dimmer"> <div class="content"> <div class="center"> <div class="ui red inverted button">Delete Image</div> </div> </div> </div> <img src="'+src+'" /> </div> <div class="extra content"> <button class="ui button red fluid"> <i class="remove icon"></i>Set As Default </button> </div> </div>');					
-			
-		},
-		fail : function(e, data){}
-			
-	});
+//	
+//	
+//	
+//	var preview = $('.media-preview');
+//	$('#produit-form').fileupload({
+//		url : '/hanouta/media/add/single',
+//		add : function(e,data){
+//			var send = data.submit();
+//		},
+//		progress : function(e,data){
+//		},
+//		done : function(e, data){
+//			console.log("done : ",data)
+//			var src = data.result.path;
+//			preview.append('<div class="card special cards"> <div class="blurring dimmable image"> <div class="ui dimmer"> <div class="content"> <div class="center"> <div class="ui red inverted button">Delete Image</div> </div> </div> </div> <img src="'+src+'" /> </div> <div class="extra content"> <button class="ui button red fluid"> <i class="remove icon"></i>Set As Default </button> </div> </div>');					
+//			
+//		},
+//		fail : function(e, data){}
+//			
+//	});
 	
 	
 	
@@ -115,6 +115,11 @@ $(document).ready(function(){
 		})
 		
 	})
+	
+	var elem = $('.color-input')[0];
+	var huebee = new Huebee(elem,{
+		customColors: [ '#C25', '#E62', '#EA0', '#19F', '#333' ]
+	});
 	
 	
 });

@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,8 +26,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.DemoApplication;
+import com.example.domain.Categorie;
 import com.example.domain.Media;
 import com.example.domain.Product;
+import com.example.domain.Tag;
 import com.example.repository.MediaRepository;
 import com.example.repository.ProductRepository;
 
@@ -54,6 +55,7 @@ public class RouterController {
 	@GetMapping("/produit/add")
 	public String produitForm(Model model){ 
 		Long id = (pr.getLastProductId() == null) ?  0 : pr.getLastProductId() ;
+		
 		model.addAttribute("productId", id+1);
 		return "produit/add"; 
 	} 
@@ -63,11 +65,19 @@ public class RouterController {
 	
 	@PostMapping("/produit/add") 
 	public @ResponseBody ResponseEntity<Product> addProduitMultiple( 
-							 @RequestParam("produit") Product produit, 
-							 @RequestParam("cles") Set<String> cles) {
+							 Product produit, 
+							 @RequestParam("cat") Categorie categorie,
+							 @RequestParam("cles") Set<Tag> cles,
+							 @RequestPart("files") List<MultipartFile> files) {
+		
+		produit.setCategorie(categorie);
+		produit.getTags().addAll(cles);
+		//pr.save(produit);
 		
 		System.out.println("produit : " + produit);
 		System.out.println("cles : "    + cles);
+		System.out.println("categorie : "    + categorie);
+		System.out.println("files : "    + files.size());
 		
 		return new ResponseEntity<Product>(produit, HttpStatus.OK);
 	}
@@ -82,7 +92,7 @@ public class RouterController {
          FileCopyUtils.copy(file.getInputStream(), bos);
          bos.close();
          
-         Product produit =new Product("","","",0.0, "","");
+         Product produit =new Product("","",0.0, "","");
          produit.setId(productId);
          pr.save(produit);
          
@@ -96,8 +106,8 @@ public class RouterController {
 		return new ResponseEntity<Media>(media, HttpStatus.OK);
 	}
 	
-	 @RequestMapping(value="media/{id}", method = RequestMethod.GET )
-	 public byte[] getImage(@PathVariable Long id) throws Exception{
+	@RequestMapping(value="media/{id}", method = RequestMethod.GET )
+	public byte[] getImage(@PathVariable Long id) throws Exception{
 	     Media media = mr.findOne(id);
 	     File file = new File(media.getPath());
 	     InputStream in = new FileInputStream(file);

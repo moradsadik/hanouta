@@ -26,7 +26,6 @@ import lombok.ToString;
 public class Product implements Serializable{
 	@Getter @Setter @Id @GeneratedValue private Long id;
 	@Getter @Setter private String name;
-	@Getter @Setter private String titre;
 	@Getter @Setter private String description;
 	@Getter @Setter private Double prix;
 	@Getter @Setter private String size;
@@ -38,10 +37,9 @@ public class Product implements Serializable{
 	@OneToMany(mappedBy="product", fetch=FetchType.LAZY) @Getter @Setter private Set<Tag> tags = new HashSet<>();;
 	
 	public Product(){}
-	public Product(String name,String titre, String description, Double prix, String size, String color) {
+	public Product(String name,String description, Double prix, String size, String color) {
 		super();
 		this.name = name;
-		this.titre = titre;
 		this.description = description;
 		this.prix = prix;
 		this.size = size;

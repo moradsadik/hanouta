@@ -16,22 +16,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @ToString(callSuper=true, exclude={"photos", "tags", "categorie", "date"})
 public class Product implements Serializable{
-	@Getter @Setter @Id @GeneratedValue private Long id;
-	@Getter @Setter private String name;
-	@Getter @Setter private String description;
-	@Getter @Setter private Double prix;
-	@Getter @Setter private String size;
-	@Getter @Setter private String color;
 	
+	@Getter @Setter @Id @GeneratedValue private Long id;
+	@NotEmpty @Getter @Setter private String name;
+	@NotEmpty @Getter @Setter private String description;
+	@NotNull @Getter @Setter private Double prix;
+	@NotEmpty @Getter @Setter private String size;
+	@NotEmpty @Getter @Setter private String color;
 	@Temporal(TemporalType.TIMESTAMP) Date date;
+	
 	@OneToMany(mappedBy="product", fetch=FetchType.LAZY) @Getter @Setter private List<Media> photos = new ArrayList<>();;
 	@ManyToOne @JoinColumn(name="categorie_id") @Getter @Setter private Categorie categorie;
 	@OneToMany(mappedBy="product", fetch=FetchType.LAZY) @Getter @Setter private Set<Tag> tags = new HashSet<>();;
@@ -44,6 +48,7 @@ public class Product implements Serializable{
 		this.prix = prix;
 		this.size = size;
 		this.color = color;
+		this.date = new Date();
 	}
 	
 }

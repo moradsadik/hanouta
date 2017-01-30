@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,10 +57,7 @@ public class RouterController {
 	public String produit(){ return "produit"; } 
 	
 	@GetMapping("/produit/add")
-	public String produitForm(Model model){ 
-		Long id = (pr.getLastProductId() == null) ?  0 : pr.getLastProductId() ;
-		
-		model.addAttribute("productId", id+1);
+	public String produitForm(@ModelAttribute("produit") Product produit){ 
 		return "produit/add"; 
 	} 
 
@@ -64,22 +65,28 @@ public class RouterController {
 	public String cart(){ return "cart"; }
 	
 	@PostMapping("/produit/add") 
-	public @ResponseBody ResponseEntity<Product> addProduitMultiple( 
-							 Product produit, 
+	public String addProduitMultiple( 
+							 @Valid @ModelAttribute("produit") Product produit, 
+							 BindingResult error,
 							 @RequestParam("cat") Categorie categorie,
 							 @RequestParam("cles") Set<Tag> cles,
 							 @RequestPart("files") List<MultipartFile> files) {
+				
+		if(error.hasErrors()){
+			System.out.println("EROOOOOOOOOOOOOOOR.");
+			return "produit/add";
+		}
 		
 		produit.setCategorie(categorie);
 		produit.getTags().addAll(cles);
-		//pr.save(produit);
 		
 		System.out.println("produit : " + produit);
 		System.out.println("cles : "    + cles);
 		System.out.println("categorie : "    + categorie);
 		System.out.println("files : "    + files.size());
 		
-		return new ResponseEntity<Product>(produit, HttpStatus.OK);
+		
+		return "produit";
 	}
 	
 	@PostMapping("/media/add/single") 

@@ -24,23 +24,21 @@
 	<div class="container" style="margin:30px auto">
 		<div class="row">
 			<div class="col-md-12">
-				<form class="ui form" id="produit-form" method ="post" th:action = "@{/hanouta/produit/add}" enctype="multipart/form-data">
-				  <h3 class="ui dividing header top attached blue header">
-				  	Product Detaille
-				  </h3>
+				<form class="ui form" th:object="${produit}" id="produit-form" method ="post" th:action = "@{/hanouta/produit/add}" enctype="multipart/form-data">
+				  <h3 class="ui dividing header top attached blue header"> Product Detaille </h3>
 				  <div class="ui attached segment">
 				  	<div class="fields two">
 					  	  <div class="field">
 						    <label>Name</label>
-						    <input type="text" name="name" placeholder="First Name" />
-						    <div class="ui pointing red basic label"> Please enter a value </div>
+						    <input type="text" placeholder="First Name" th:field="*{name}" />
+						    <div class="ui pointing red basic label" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
 						  </div>
 						  <div class="field">
-						    <label>Categorie</label>
+						     <label>Categorie</label>
 						  	 <div class="ui  dropdown labeled search icon button basic fluid">
 						  	 	 <input type="hidden" name="cat" />	
 								  <i class="resize vertical icon"></i>
-								  <span class="text">Categorie</span>
+								  <span class="text">Select Categorie</span>
 								  <div class="menu">
 								    <div class="item" data-value="1">categorie 1</div>
 								    <div class="item" data-value="2">categorie 2</div>
@@ -50,18 +48,20 @@
 								    <div class="item" data-value="6">categorie 6</div>
 								  </div>
 							 </div>
+						    <div class="ui pointing red basic label" th:errors="${produit.categorie}">  </div>
 						  </div>
 					  </div>
 					  <div class="field">
 					    <label>Description</label>
 					    <textarea rows="2" name="description"></textarea>
+					    <div class="ui pointing red basic label" th:errors="${produit.description}"></div>
 					  </div>
 					  <div class="fields three">
 					  	  <div class="field">
 						  	 <div class="ui floating dropdown labeled search icon button basic fluid">
-						  	 	 <input type="hidden" name="size" />	
+						  	 	 <input type="hidden" name="size" th:value="${produit.size}"/>	
 								  <i class="resize vertical icon"></i>
-								  <span class="text">Taille</span>
+								  <span class="text">Select Taille</span>
 								  <div class="menu">
 								    <div class="item" data-value="xl">XLarge</div>
 								    <div class="item" data-value="l">Large</div>
@@ -70,20 +70,23 @@
 								    <div class="item" data-value="xs">XSmall</div>
 								  </div>
 							 </div>
+						    <div class="ui pointing red basic label" th:errors="${produit.size}"></div>
 						  </div>
 						  
 						  <div class="field">
 						  	 <div class="ui right labeled input">
-								  <input type="text" name="prix" placeholder="Price" />
+								  <input type="text" name="prix" placeholder="Entrer Prix" th:value="${produit.prix}"/>
 								  <div class="ui basic label"> DH </div>
 							 </div>
+							 <div class="ui pointing red basic label" th:errors="${produit.prix}">  </div>
 						  </div>
 						  
 						  <div class="field">
 						  	 <div class="ui right labeled input">
-								  <input type="text" class="color-input" name="color" placeholder="#fff" />
-								  <div class="ui basic label"> #HEX </div>
+								  <input type="text" class="color-input" name="color" th:value="${produit.color}" placeholder="#fff" />
+								  <div class="ui basic label">Color </div>
 							 </div>
+						     <div class="ui pointing red basic label" th:errors="${produit.color}"></div>
 						  </div>
 					  </div>
 				  </div>
@@ -92,13 +95,10 @@
 				  	<div class="field">
 				  		<div class="ui right labeled left icon input tag-parent">
 						  <i class="tags icon"></i>
-						  <input type="text" name="cles" placeholder="new, fresh, light ..." />
-						  <a class="ui label add-tags"> Add Tags </a>
+						  <input type="text" class="tag-input" name="cles" placeholder="mot separer par virgile #example : a,b,c " />
+						  <a class="ui label add-tags"> Tags </a>
 						</div>
-						<div class="ui clearing divider"></div>
-						<div class="tag-list">
-						
-						</div>
+						<div class="tag-list"> </div>
 				  	</div>
 				  </div>
 				  <h3 class="ui dividing header blue attached">Product Medias</h3>
@@ -106,31 +106,14 @@
 				  	<div class="field">
 					    <input style="display:none" type="file" name="files" class="file-container" multiple="multiple" />
 					    <div class="ui left labeled button fluid upload-button" tabindex="0">
-						  <a class="ui blue label " style="width:40%"> Upload Images </a>
-						  <div class="ui icon blue button" style="width:10%"> <i class="upload icon"></i> </div>
+						  <a class="ui grey label " style="width:40%"> Upload Images </a>
+						  <div class="ui icon grey button" style="width:10%"> <i class="upload icon"></i> </div>
 						</div>
 				    </div>
-				   <div class="ui cards five field media-preview">
-						<!-- <div class="card special cards">
-						    <div class="blurring dimmable image">
-						      <div class="ui dimmer">
-						        <div class="content">
-						          <div class="center">
-						            <div class="ui red inverted button">Delete Image</div>
-						          </div>
-						        </div>
-						      </div>
-						      <img src="../uploads/1.jpg" />
-						    </div>
-						    <div class="extra content">
-						      <button class="ui button red fluid"> <i class="remove icon"></i>Set As Default </button> 
-						    </div>
-						</div> -->
-				   </div>
+				   <div class="ui cards five field media-preview"></div>
 				  </div>
 				  <div class="ui attached header bottom">
-				  		<input type="hidden" name="productId" th:value="${productId}" />
-				  		<button class="ui button blue form-produit" type="submit">Submit</button>
+				  		<button class="ui button blue fluid form-produit" type="submit">Enregistrer Produit</button>
 				  </div>
 				  
 				</form>

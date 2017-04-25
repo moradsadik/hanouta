@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -24,6 +23,8 @@ import lombok.ToString;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @ToString(callSuper=true, exclude={"photos", "tags", "categorie", "date"})
 public class Product implements Serializable{
@@ -36,9 +37,9 @@ public class Product implements Serializable{
 	@NotEmpty @Getter @Setter private String color;
 	@Temporal(TemporalType.TIMESTAMP) Date date;
 	
-	@OneToMany(mappedBy="product", fetch=FetchType.LAZY) @Getter @Setter private List<Media> photos = new ArrayList<>();;
-	@ManyToOne @JoinColumn(name="categorie_id") @Getter @Setter private Categorie categorie;
-	@OneToMany(mappedBy="product", fetch=FetchType.LAZY) @Getter @Setter private Set<Tag> tags = new HashSet<>();;
+	@Getter @Setter @ManyToOne @JoinColumn(name="categorie_id") private Categorie categorie;
+	@Getter @Setter @OneToMany(mappedBy="product") private List<Media> photos = new ArrayList<>();
+	@Getter @Setter @OneToMany(mappedBy="product") private Set<Tag> tags = new HashSet<>();
 	
 	public Product(){}
 	public Product(String name,String description, Double prix, String size, String color) {

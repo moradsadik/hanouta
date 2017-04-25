@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,9 +17,9 @@ import lombok.ToString;
 @ToString(callSuper=true, exclude={"product"})
 public class Media{
 	@Getter @Setter @Id @GeneratedValue private Long Id;
-	@Getter @Setter @Lob private byte[] file;
+	@JsonIgnore @Getter @Setter @Lob private byte[] file;
 	@Getter @Setter private String path;
-	@Getter @Setter @ManyToOne @JoinColumn(name="product_id") Product product;
+	@JsonIgnore @Getter @Setter @ManyToOne @JoinColumn(name="product_id") Product product;
 	
 	public Media(){}
 

@@ -24,7 +24,7 @@
 	<div class="container" style="margin:30px auto">
 		<div class="row">
 			<div class="col-md-12">
-				<form class="ui form" th:object="${produit}" id="produit-form" method ="post" th:action = "@{/hanouta/produit/add}" enctype="multipart/form-data">
+				<form class="ui form" th:object="${produit}"   id="produit-form" method ="post" th:action = "@{/hanouta/produit/add}" enctype="multipart/form-data">
 				  <h3 class="ui dividing header top attached blue header"> Product Detaille </h3>
 				  <div class="ui attached segment">
 				  	<div class="fields two">
@@ -36,7 +36,7 @@
 						  <div class="field">
 						     <label>Categorie</label>
 						  	 <div class="ui  dropdown labeled search icon button basic fluid">
-						  	 	 <input type="hidden" name="cat" />	
+						  	 	 <input type="hidden" name="categorie" />	
 								  <i class="resize vertical icon"></i>
 								  <span class="text">Select Categorie</span>
 								  <div class="menu">
@@ -95,10 +95,11 @@
 				  	<div class="field">
 				  		<div class="ui right labeled left icon input tag-parent">
 						  <i class="tags icon"></i>
-						  <input type="text" class="tag-input" name="cles" placeholder="mot separer par virgile #example : a,b,c " />
+						  <input type="text" class="tag-input" name="tags" placeholder="mot separer par virgile #example : a,b,c " />
 						  <a class="ui label add-tags"> Tags </a>
 						</div>
 						<div class="tag-list"> </div>
+      				    <div class="ui pointing red basic label" th:errors="${produit.tags}"></div>
 				  	</div>
 				  </div>
 				  <h3 class="ui dividing header blue attached">Product Medias</h3>
@@ -109,7 +110,9 @@
 						  <a class="ui grey label " style="width:40%"> Upload Images </a>
 						  <div class="ui icon grey button" style="width:10%"> <i class="upload icon"></i> </div>
 						</div>
+						<div class="ui pointing red basic label" th:errors="*{photos}"></div>
 				    </div>
+				    
 				   <div class="ui cards five field media-preview"></div>
 				  </div>
 				  <div class="ui attached header bottom">

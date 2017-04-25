@@ -25,6 +25,7 @@ public class TagsConverter  implements Converter<String, Set<Tag>>{
 		Set<Tag> tags = null;
 		String[] ts = listTags.split(",");
 		tags = Stream.of(ts)
+			  .filter( t -> !t.isEmpty() )
 		      .map(t -> { return new Tag(t); })
 		      .collect(Collectors.toSet());
 		
